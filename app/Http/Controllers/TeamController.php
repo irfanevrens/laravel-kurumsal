@@ -55,17 +55,7 @@ class TeamController extends Controller
             return redirect('admin/team');
         }
     }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
+    
     public function update(Request $request, $id)
     {
         foreach( $request->get('data') as $key => $id){
