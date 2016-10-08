@@ -1,7 +1,7 @@
 # laravel-kurumsal
-Laravel Kurumsal 5.1.26
+Laravel Kurumsal 5.1.26 
 
-Laravel 5.1.26 ile yazılmış. basit ve orta ölçekli işletmeler için basit bir içerik yönetim sistemidir.
+Kurumsal Firmalar İçin Admin Paneli Scripti.
 
 Frontend
 Canvas Teması kullanıldı.
@@ -33,3 +33,5 @@ Bileşenler
   Referanslar
   Galeri
   İletişim
+ 
+ 
