@@ -66,6 +66,7 @@ class TeamController extends Controller
         return $request->get('data');
     }
 
+    // delete function 
     public function destroy(Request $request)
     {
         foreach( $request->get('data') as $key => $id){
