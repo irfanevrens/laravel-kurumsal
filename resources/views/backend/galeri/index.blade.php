@@ -48,7 +48,7 @@
         <input type="checkbox" @if($galeri->status == 1) checked @endif data-id= {{ $galeri->id }} >
     </td>
     <td>{{ $galeri->name }} @if ($galeri->photos->count() > 0)<span class="badge badge-primary"> {{ $galeri->photos->count() }} </span> @endif</td>
-    <td><a href="{{url('galeri/'.$galeri->slug)}}" target="_blank">{{url('galeri/'.$galeri->slug)}}</a> </td>
+    <td><a href="{{url('galeri')}}" target="_blank">{{url('galeri')}}</a> </td>
     <td class="float-left">
         {!! Form::open(['id' => 'myForm', 'method' => 'DELETE', 'route'=>['admin.galeri.destroy', $galeri->id]]) !!}
         <a href="{{url('admin/galeri/upload/'.$galeri->id)}}" class="btn btn-icon-only tooltips" data-container="body" data-placement="top" data-html="true" data-original-title="Fotoğraf Ekle"><i class="icon-picture"></i></a>

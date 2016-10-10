@@ -25,9 +25,7 @@ class LogoController extends Controller
         // old logo
         $logo = Logo::find(1);
         $imageFullPath = public_path($logo->file_path);
-        if (File::exists($imageFullPath)){
-            File::delete($imageFullPath);
-        }
+        if (File::exists($imageFullPath)){ File::delete($imageFullPath); }
 
         $file = $request->file('file');
         list($filename, $extension) = explode(".", $file->getClientOriginalName());

@@ -92,12 +92,15 @@
 {{--<script src="/backend/assets/global/plugins/typeahead/typeahead.bundle.min.js" type="text/javascript"></script>--}}
 <script src="/backend/assets/global/plugins/ckeditor/ckeditor.js"  type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
+
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="/backend/assets/global/scripts/metronic.js" type="text/javascript"></script>
 <script src="/backend/assets/admin/layout/scripts/layout.js" type="text/javascript"></script>
 <script src="/backend/assets/admin/layout/scripts/quick-sidebar.js" type="text/javascript"></script>
 <script src="/backend/assets/admin/layout/scripts/demo.js" type="text/javascript"></script>
 <script src="/backend/assets/admin/pages/scripts/components-form-tools.js"  type="text/javascript"></script>
+<!-- add some code -->
+<script src="/backend/assets/admin/pages/scripts/form-samples.js"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 @endsection
 @section('DOCUMENT-READY')

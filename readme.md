@@ -1,5 +1,5 @@
 # laravel-kurumsal
-Laravel Kurumsal 5.1.26 
+Laravel Kurumsal 5.1.26
 
 Kurumsal Firmalar İçin Admin Paneli Scripti.
 

@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Validator;
 use App\Team;
-
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 
 class TeamController extends Controller
 {
@@ -33,26 +34,40 @@ class TeamController extends Controller
     // store new team member
     public function store(Request $request)
     {
-        // with validations
+        // begin alidations
         $validator = Validator::make($request->all(), [
-            'adsoyad' => 'required',
-            'unvan' => 'required',
-            'fotograf' => 'required'
+            'name' => 'required',
+            'title' => 'required',
         ]);
+        // end validations
 
-        // return with errors
+        // begin return errors
         if ($validator->fails()) {
             return redirect('admin/team/create')
                 ->withErrors($validator)
                 ->withInput();
         }
+        // end return errors
 
-        // no errors do it
-        $team = new Team;
-        $team->name = trim($request->adsoyad);
-        $team->title = trim($request->unvan);
-        $team->image = $request->fotograf;
-        $team->save();
+        // begin file process
+        $file = $request->file('file');
+        list($filename, $extension) = explode(".", $file->getClientOriginalName());
+        $filename = strtolower(str_slug($filename.'-'.uniqid()).'.'.$extension);
+        $fileSave = $file->move('uploads/team',$filename);
+        Image::make('uploads/team/'.$filename)->fit(400, 300)->save('uploads/team/'.$filename, 60);
+        // end file process
+
+
+
+        if($fileSave){
+            $team = new Team;
+            //$photo->file_name = $filename;
+            $path = 'uploads/team/'.$filename;
+            $team->name  = trim($request->name);
+            $team->title = trim($request->title);
+            $team->image = $path;
+            $team->save();
+        }
 
         // if team stored return admin/team page
         if($team->save()) {
@@ -77,6 +92,9 @@ class TeamController extends Controller
     {
         foreach( $request->get('data') as $key => $id){
             $team = Team::find($id);
+            // image dosyalarını bul ve sil
+            $imagePublicPath = public_path($team->image);
+            File::delete($imagePublicPath);
             $team->delete();
         }
         return $request->get('data');
