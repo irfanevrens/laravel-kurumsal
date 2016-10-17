@@ -46,16 +46,19 @@
         <!-- END CHUNK -->
         @endforeach
 
+        <!-- BEGIN DELETE / SELECT ALL BUTTONS -->
         @if($team->count() > 0)
             <div class="row">
-                <div class="col-md-2 col-sm-2">
-                    <button class="btn btn-danger rounded-4 tooltips" id="delete" data-container="body" data-placement="top" data-html="true" data-original-title="İŞARETLENMİŞLERİ SİL">
+                <div class="col-sm-12 col-md-12">
+                    <button class="btn btn-default rounded-4 tooltips" id="delete" data-container="body" data-placement="top" data-html="true" data-original-title="İŞARETLENMİŞLERİ SİL">
                         <i class="icon-trash"></i>
                     </button>
+                    <label><input type="checkbox" id="checkAll" /> HEPSİNİ SEÇ</label>
                 </div>
             </div>
-            @endif
-                    <!-- END PHOTO -->
+         @endif
+        <!-- END DELETE / SELECT ALL BUTTONS -->
+
             @endsection
             @section('PAGE-LEVEL-PLUGINS-SCRIPTS')
                     <!-- BEGIN PAGE LEVEL PLUGINS -->

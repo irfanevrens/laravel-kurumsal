@@ -17,6 +17,7 @@ return array(
     'CreatePostsTable' => $baseDir . '/database/migrations/2015_09_03_101106_create_posts_table.php',
     'CreateSlidersTable' => $baseDir . '/database/migrations/2016_01_07_220735_create_sliders_table.php',
     'CreateSocialsTable' => $baseDir . '/database/migrations/2016_02_22_174443_create_socials_table.php',
+    'CreateTeamSocialIconsTable' => $baseDir . '/database/migrations/2016_10_11_003848_create_team_social_icons_table.php',
     'CreateTeamsTable' => $baseDir . '/database/migrations/2016_04_29_141425_create_teams_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',

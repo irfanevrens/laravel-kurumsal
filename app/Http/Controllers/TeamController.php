@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
 use App\Team;
+use App\TeamSocialIcon;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 
@@ -30,8 +32,7 @@ class TeamController extends Controller
     {
         return view('backend.team.create', compact('data'));
     }
-
-    // store new team member
+    // ---------------------------------------------STORE STORE STORE STORE -------------------------------------------
     public function store(Request $request)
     {
         // begin alidations
@@ -57,11 +58,8 @@ class TeamController extends Controller
         Image::make('uploads/team/'.$filename)->fit(400, 300)->save('uploads/team/'.$filename, 60);
         // end file process
 
-
-
         if($fileSave){
             $team = new Team;
-            //$photo->file_name = $filename;
             $path = 'uploads/team/'.$filename;
             $team->name  = trim($request->name);
             $team->title = trim($request->title);
@@ -69,11 +67,25 @@ class TeamController extends Controller
             $team->save();
         }
 
-        // if team stored return admin/team page
-        if($team->save()) {
+        if($team->save()){
+            $insertedId  = Team::All()->last()->id;
+
+            $social_class = $request->social_class;
+            $link = $request->link;
+
+            for($i = 0; $i < count($social_class); $i++) {
+                $tsi = new TeamSocialIcon();
+                $tsi->order_id = 0;
+                $tsi->team_id = $insertedId;
+                $tsi->social_class = $social_class[$i];
+                $tsi->link = $link[$i];
+                $tsi->save();
+            }
             return redirect('admin/team');
         }
-    }
+            }
+
+    // ---------------------------------------------STORE STORE STORE STORE -------------------------------------------
 
     // team members ajax update
     public function update(Request $request, $id)

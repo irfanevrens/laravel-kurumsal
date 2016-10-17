@@ -1,7 +1,12 @@
-// 
 var Sortable = function (){
     return {
         init: function () {
+            // begin checkAll
+            $("#checkAll").click(function () {
+                //alert( "Handler for .change() called." );
+                $("input:checkbox.icheck").prop('checked', $(this).prop("checked"));
+            });
+            // end checkAll
 
             // begin update
             $(function() {
@@ -78,7 +83,9 @@ var Sortable = function (){
 
             });
             // end delete
+
         }
+
 
     }
 }();

@@ -43,6 +43,7 @@
                 </div>
             </div>
 
+            <!-- begin social_id dropdown -->
             <div class="row" style="padding-top: 4px">
                 <div class="col-md-12">
                     <div class="form-group">
@@ -129,7 +130,7 @@
                     </div>
                 </div>
             </div>
-
+            <!-- end social_id dropdown -->
             <!--/row-->
         </div>
         <div class="form-actions left">
