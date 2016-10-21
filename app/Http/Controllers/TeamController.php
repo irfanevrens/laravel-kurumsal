@@ -39,6 +39,7 @@ class TeamController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'title' => 'required',
+            'file' => 'required'
         ]);
         // end validations
 
@@ -57,7 +58,6 @@ class TeamController extends Controller
         $fileSave = $file->move('uploads/team',$filename);
         Image::make('uploads/team/'.$filename)->fit(400, 300)->save('uploads/team/'.$filename, 60);
         // end file process
-
         if($fileSave){
             $team = new Team;
             $path = 'uploads/team/'.$filename;
@@ -66,23 +66,20 @@ class TeamController extends Controller
             $team->image = $path;
             $team->save();
         }
-
         if($team->save()){
             $insertedId  = Team::All()->last()->id;
-
             $social_class = $request->social_class;
             $link = $request->link;
-
-            for($i = 0; $i < count($social_class); $i++) {
+            foreach ($social_class as $i => $socialClass) {
                 $tsi = new TeamSocialIcon();
                 $tsi->order_id = 0;
                 $tsi->team_id = $insertedId;
-                $tsi->social_class = $social_class[$i];
+                $tsi->social_class = $socialClass;
                 $tsi->link = $link[$i];
                 $tsi->save();
             }
-            return redirect('admin/team');
         }
+        return redirect('admin/team');
             }
 
     // ---------------------------------------------STORE STORE STORE STORE -------------------------------------------
