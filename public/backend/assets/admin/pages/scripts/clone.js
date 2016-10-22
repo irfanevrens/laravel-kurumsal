@@ -7,37 +7,40 @@ var Clone = function (){
             $('div.tsi').each(function() {
                 $(this).attr('data-id', number);
                 $('div.minus').attr('data-id', number);
-                this.id = number;
                 number ++ ;
+                delete number;
             });
             // page start
-
+            
             // begin append to new element
             $('.plus').live('click',function() {
-                $('.form-body').append(addDiv).find('div.tsi').slideDown('fast');
+                $('.form-body').append(addDiv).find('div.tsi').slideDown('slow');
+                
                 var number = 1;
                 $('div.tsi').each(function() {
                     $(this).attr('data-id', number);
                     $('div.minus').attr('data-id', number);
-                    this.id = number;
                     number ++ ;
+                    delete number;
                 });
+                
+                var number = 1;
+                $('div.minus').each(function() {
+                    $(this).attr('data-id', number);
+                    number ++ ;
+                    delete number;
+                });
+                
             });
             // end append to new element
 
             // begin remove element
-            $('div.minus').live('click',function() { // trigger ok
-
-                var black = "black"; // ok
-                var white = "black"; // ok
-
-                if (black == white){
-                    console.log($(this).attr("data-id"));
-                    var id = $(this).attr('data-id');
-                    $('div#data-'+id).remove().slideDown('slow');
-                }
-
-
+            $('div.minus').live('click',function() {
+                var dataId = $(this).attr('data-id');
+                $("div.tsi[data-id='"+dataId+"']").slideUp('slow', function() {
+                    $(this).remove();
+                });
+                console.log(dataId); // undefined
             });
             // end remove element
 
