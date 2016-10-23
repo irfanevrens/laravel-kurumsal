@@ -39,7 +39,7 @@
         <div class="form-body">
             <!-- begin file input -->
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="col-lg-3 col-md-3 col-sm-3">
                     <div class="fileinput fileinput-new" data-provides="fileinput">
                         <div class="fileinput-new thumbnail img-responsive">
                             <img src="" alt=""/>
@@ -47,14 +47,12 @@
                         <div class="fileinput-preview fileinput-exists thumbnail img-responsive">
                         </div>
                         <div>
-													<span class="btn default btn-file">
-													<span class="fileinput-new">
-													Fotoğraf seç </span>
-													<span class="fileinput-exists">
-													Change </span>
-													<input type="file" name="file">
-													</span>
-                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput">Remove </a>
+                            <span class="btn default btn-file">
+                                <span class="fileinput-new">Fotoğraf seç </span>
+                                <span class="fileinput-exists">Değiştir </span>
+                                <input type="file" name="file">
+                            </span>
+                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput">Kaldır </a>
                         </div>
                     </div>
                 </div>

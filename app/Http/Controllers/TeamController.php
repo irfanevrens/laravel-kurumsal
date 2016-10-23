@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
 use App\Team;
 use App\TeamSocialIcon;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\File;
 
 class TeamController extends Controller
 {
@@ -32,7 +31,7 @@ class TeamController extends Controller
     {
         return view('backend.team.create', compact('data'));
     }
-    // ---------------------------------------------STORE STORE STORE STORE -------------------------------------------
+
     public function store(Request $request)
     {
         // begin alidations
@@ -82,8 +81,6 @@ class TeamController extends Controller
         return redirect('admin/team');
             }
 
-    // ---------------------------------------------STORE STORE STORE STORE -------------------------------------------
-
     // team members ajax update
     public function update(Request $request, $id)
     {
@@ -101,11 +98,13 @@ class TeamController extends Controller
     {
         foreach( $request->get('data') as $key => $id){
             $team = Team::find($id);
-            // image dosyalarını bul ve sil
             $imagePublicPath = public_path($team->image);
             File::delete($imagePublicPath);
             $team->delete();
+            TeamSocialIcon::where('team_id', $id)->delete();
+            // $id1,id2, id3 teamIconController foreach destroy
         }
+        
         return $request->get('data');
     }
 }

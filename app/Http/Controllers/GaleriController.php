@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\File;
 use Response;
 use App\Galeri;
 use App\Photo;
-use App\Option;
 
 class GaleriController extends Controller
 {
@@ -103,26 +102,20 @@ class GaleriController extends Controller
     public function destroy($id)
     {
         $photoCount = Galeri::find($id)->photos->count();
-        if($photoCount == 0)
-        {
+        // galeride fotograf yok ise
+        if($photoCount == 0) {
             Galeri::destroy($id);
             return redirect('admin/galeri');
         }
-
+        // galeride fotograf varsa
         else {
             $photos = Galeri::find($id)->photos;
-            foreach($photos as $photo)
-            {
-                // file
-                // /uploads/galeri/images/561d57232f40d-girls-fullhd-2.jpg
+            foreach($photos as $photo) {
                 $imageFullPath = public_path($photo->file_path);
                 File::delete($imageFullPath);
-
                 $deleteThumbs = public_path('uploads/galeri/thumb/').$photo->file_name;
                 File::delete($deleteThumbs);
-
             }
-            // table section
             Photo::where('galeri_id', $id)->delete();
             Galeri::destroy($id);
             return redirect('admin/galeri');
