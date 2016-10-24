@@ -2,7 +2,7 @@
 
 namespace App\Umut;
 
-class TeamSocial
+class Tsi
 {
     public $class;
     public $icon;
