@@ -42,6 +42,7 @@ class SocialController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+        // Social Helper classına giden integer değerler caseten geçirilip değiştirilerek geri dönüyor.
         $isocial = new iSocial;
         $isocial->setClass($request->social_id);
         $isocial->setIcon($request->social_id);

@@ -6,7 +6,7 @@ class Social
 {
     public $class;
     public $icon;
-
+    
     public function setClass($class)
     {
         switch ($class) {
@@ -170,11 +170,6 @@ class Social
         }
     }
 
-    public function getClass() {
-    return $this->class;
-}
-
-    public function getIcon() {
-    return $this->icon;
-}
+    public function getClass() {return $this->class;}
+    public function getIcon() {return $this->icon;}
 }

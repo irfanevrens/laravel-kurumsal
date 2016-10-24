@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use App\Team;
 use App\TeamSocialIcon;
+use App\Umut\TeamMemberSocial;
 
 class TeamController extends Controller
 {
@@ -25,8 +26,7 @@ class TeamController extends Controller
         return view('backend.team.index', compact('team','count'))
             ->withData($data);
     }
-
-    // create new team member page
+    
     public function create()
     {
         return view('backend.team.create', compact('data'));
@@ -70,12 +70,24 @@ class TeamController extends Controller
             $social_class = $request->social_class;
             $link = $request->link;
             foreach ($social_class as $i => $socialClass) {
+                // add
+                $teamMemberSocial = new TeamMemberSocial();
+                $teamMemberSocial->setClass($socialClass);
+                $teamMemberSocial->setIcon($socialClass);
+
                 $tsi = new TeamSocialIcon();
                 $tsi->order_id = 0;
                 $tsi->team_id = $insertedId;
-                $tsi->social_class = $socialClass;
+                $tsi->social_class = $teamMemberSocial->getClass();
+                $tsi->icon = $teamMemberSocial->getIcon();
                 $tsi->link = $link[$i];
                 $tsi->save();
+                // add
+
+
+
+
+
             }
         }
         return redirect('admin/team');
@@ -89,11 +101,9 @@ class TeamController extends Controller
             $team->order_id = $key;
             $team->save();
         }
-        // when update order_id refresh order_id
         return $request->get('data');
     }
-
-    // team members single and multiple checkbox deleting from ajax
+    
     public function destroy(Request $request)
     {
         foreach( $request->get('data') as $key => $id){
@@ -102,7 +112,6 @@ class TeamController extends Controller
             File::delete($imagePublicPath);
             $team->delete();
             TeamSocialIcon::where('team_id', $id)->delete();
-            // $id1,id2, id3 teamIconController foreach destroy
         }
         
         return $request->get('data');

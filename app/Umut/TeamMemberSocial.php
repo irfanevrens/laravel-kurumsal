@@ -2,7 +2,7 @@
 
 namespace App\Umut;
 
-class Tsi
+class TeamMemberSocial
 {
     public $class;
     public $icon;
@@ -169,12 +169,6 @@ class Tsi
 
         }
     }
-
-    public function getClass() {
-    return $this->class;
-}
-
-    public function getIcon() {
-    return $this->icon;
-}
+    public function getClass() {return $this->class;}
+    public function getIcon() {return $this->icon;}
 }

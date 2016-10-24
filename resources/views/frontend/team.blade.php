@@ -40,18 +40,15 @@
                             </div>
                             <div class="team-desc">
                                 <div class="team-title"><h4>{{ $team->name }}</h4><span>{{ $team->title }}</span></div>
-                                <a href="#" class="social-icon inline-block si-small si-light si-rounded si-facebook">
-                                    <i class="icon-facebook"></i>
-                                    <i class="icon-facebook"></i>
+
+                                @foreach( $team->teamSocialIcons as $tsi)
+                                <!-- social-icon inline-block si-small si-light si-rounded si-facebook -->
+                                <a href="{{ $tsi->link }}" class="social-icon inline-block si-small si-light si-rounded si-facebook">
+                                    <i class="{{ $tsi->icon }}"></i> <!-- icon-facebook -->
+                                    <i class="{{ $tsi->icon }}"></i> <!-- icon- facebook -->
                                 </a>
-                                <a href="#" class="social-icon inline-block si-small si-light si-rounded si-twitter">
-                                    <i class="icon-twitter"></i>
-                                    <i class="icon-twitter"></i>
-                                </a>
-                                <a href="#" class="social-icon inline-block si-small si-light si-rounded si-gplus">
-                                    <i class="icon-gplus"></i>
-                                    <i class="icon-gplus"></i>
-                                </a>
+                                @endforeach
+
                             </div>
                         </div>
                     </div>

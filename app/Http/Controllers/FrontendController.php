@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Umut\TeamMemberSocial;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Logo;
@@ -18,7 +19,6 @@ use App\Umut\Page as iPAge;
 
 class FrontendController extends Controller
 {
-    // Anasayfa
     public function index()
     {
         $id = 1;
@@ -35,8 +35,6 @@ class FrontendController extends Controller
         $page->setSocials(Social::orderBy('order_id','ASC')->get());
         return view('frontend.index', compact('page'));
     }
-
-    // About Us
     public function about()
     {
         $id = 2;
@@ -52,8 +50,6 @@ class FrontendController extends Controller
         $page->setSocials(Social::orderBy('order_id','ASC')->get());
         return view('frontend.about', compact('page'));
     }
-
-    // Team
     public function team()
     {
         $id = 3;
@@ -70,7 +66,6 @@ class FrontendController extends Controller
         $page->setTeam(Team::orderBy('order_id','ASC')->get());
         return view('frontend.team', compact('page'));
     }
-    // Documents & Certificates
     public function documents()
     {
         $id = 4;
@@ -86,7 +81,6 @@ class FrontendController extends Controller
         $page->setSocials(Social::orderBy('order_id','ASC')->get());
         return view('frontend.documents', compact('page'));
     }
-    // Referanslar
     public function references()
     {
         $id = 5;
@@ -102,8 +96,6 @@ class FrontendController extends Controller
         $page->setSocials(Social::orderBy('order_id','ASC')->get());
         return view('frontend.reference', compact('page'));
     }
-
-    // Galeri
     public function gallery()
     {
         $id = 6;
@@ -119,7 +111,6 @@ class FrontendController extends Controller
         $page->setSocials(Social::orderBy('order_id','ASC')->get());
         return view('frontend.galeri', compact('page'));
     }
-    // Sanal Tur
     public function sanaltur()
     {
         $id = 7;
@@ -135,7 +126,6 @@ class FrontendController extends Controller
         $page->setSocials(Social::orderBy('order_id','ASC')->get());
         return view('frontend.galeri', compact('page'));
     }
-
     public function contact()
     {
         $id = 9;
@@ -152,7 +142,6 @@ class FrontendController extends Controller
         return view('frontend.contact', compact('page'));
 
     }
-
     public function contactPost (Request $request)
     {
         $data = array(
@@ -169,9 +158,7 @@ class FrontendController extends Controller
         });
         return "Mesajınız başarıyla gönderildi";
     }
-
     public function share(){
         return view('frontend.blog.share');
     }
-
 }

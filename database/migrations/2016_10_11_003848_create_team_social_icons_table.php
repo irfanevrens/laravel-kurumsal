@@ -16,7 +16,8 @@ class CreateTeamSocialIconsTable extends Migration
             $table->increments('id');
             $table->integer('order_id');
             $table->integer('team_id');
-            $table->integer('social_class');
+            $table->string('social_class');
+            $table->string('icon');
             $table->string('link');
             
         });
