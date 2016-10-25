@@ -135,15 +135,21 @@ return [
         Illuminate\Session\SessionServiceProvider::class,
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
-
         Illuminate\View\ViewServiceProvider::class,
+
+        // begin custom providers
         'Intervention\Image\ImageServiceProvider',
+        // end custom providers
+
         /*
          * Application Service Providers...
          */
+
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        // custom providers
         Collective\Html\HtmlServiceProvider::class,
 
     ],
