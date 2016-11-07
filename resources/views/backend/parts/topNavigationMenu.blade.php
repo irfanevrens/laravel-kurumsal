@@ -16,7 +16,7 @@
                         <i class="icon-user"></i> Profilim </a>
                 </li>
                 <li>
-                    <a href="{{url('admin/logout')}}">
+                    <a href="{{url('logout')}}">
                         <i class="icon-key"></i> Çıkış </a>
                 </li>
             </ul>

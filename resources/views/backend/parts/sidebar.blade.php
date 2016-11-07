@@ -12,7 +12,11 @@
             </li>
             
             <!-- Bileşenler -->
-            <li @if(Request::segment(2)=='logo' or Request::segment(2)=='slider' or Request::segment(2)=='brand' or Request::segment(2)=='social' or Request::segment(2)=='modal') class="start active open" @else class="start" @endif>
+            <li @if(Request::segment(2)=='logo'
+            or Request::segment(2)=='slider'
+            or Request::segment(2)=='brand'
+            or Request::segment(2)=='social'
+            or Request::segment(2)=='modal') class="start active open" @else class="start" @endif>
                 <a href="javascript:;">
                     <i class=""></i>
                     <span class="title">Bileşenler</span>
@@ -25,7 +29,7 @@
                             Logo</a>
                     </li>
 
-                    <li @if(Request::segment(2)=='slider' and Request::segment(3)=='') class="active" @endif>
+                    <li @if(Request::segment(2)=='slider') class="active" @endif>
                         <a href="{{URL::to('admin/slider')}}">
                             <i class=""></i>
                             Slider</a>
@@ -54,7 +58,13 @@
             <!-- Bileşenler -->
 
             <!-- Sayfalar .last -->
-            <li @if(Request::segment(2)=='references' or Request::segment(2)=='contact' or Request::segment(2)=='about' or Request::segment(2)=='team' or Request::segment(2)=='galeri' or Request::segment(2)=='news') class="last active open" @else class="last" @endif>
+            <li @if(Request::segment(2)=='references'
+            or Request::segment(2)=='contact'
+            or Request::segment(2)=='about'
+            or Request::segment(2)=='team'
+            or Request::segment(2)=='galeri'
+            or Request::segment(2)=='news'
+            or Request::segment(2)=='credential') class="last active open" @else class="last" @endif>
                 <a href="javascript:;">
                     <i class=""></i>
                     <span class="title">Sayfalar</span>
@@ -89,6 +99,12 @@
                         <a href="{{URL::to('admin/galeri')}}">
                             <i class=""></i>
                             Galeri</a>
+                    </li>
+
+                    <li @if(Request::segment(2)=='credential' and Request::segment(3)=='') class="active" @endif>
+                        <a href="{{URL::to('admin/credential')}}">
+                            <i class=""></i>
+                            Sertifikalar & Belgeler</a>
                     </li>
 
                     <li @if(Request::segment(2)=='news' and Request::segment(3)=='' or Request::segment(2)=='news') class="active" @endif>

@@ -56,7 +56,7 @@ class TeamController extends Controller
         $filename = strtolower(str_slug($filename.'-'.uniqid()).'.'.$extension);
         $fileSave = $file->move('uploads/team',$filename);
         Image::make('uploads/team/'.$filename)->fit(400, 300)->save('uploads/team/'.$filename, 60);
-        // end file process
+
         if($fileSave){
             $team = new Team;
             $path = 'uploads/team/'.$filename;
@@ -70,7 +70,6 @@ class TeamController extends Controller
             $social_class = $request->social_class;
             $link = $request->link;
             foreach ($social_class as $i => $socialClass) {
-                // add
                 $teamMemberSocial = new TeamMemberSocial();
                 $teamMemberSocial->setClass($socialClass);
                 $teamMemberSocial->setIcon($socialClass);
@@ -82,12 +81,6 @@ class TeamController extends Controller
                 $tsi->icon = $teamMemberSocial->getIcon();
                 $tsi->link = $link[$i];
                 $tsi->save();
-                // add
-
-
-
-
-
             }
         }
         return redirect('admin/team');

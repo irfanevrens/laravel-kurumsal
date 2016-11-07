@@ -12,35 +12,30 @@
 
 {!! Form::open(
 array(
-'route' => 'admin.slider.store',
+'route' => 'admin.credential.store',
 'class' => 'dropzone',
 'id'    => 'myDropzone',
 'novalidate' => 'novalidate',
 'files' => true)) !!}
 {!! Form::close() !!}
+
         <!-- BEGIN PHOTO -->
 <div style="margin: 20px;">
     <span class="caption-subject font-red-sunglo bold"> </span><span class="caption-subject "></span>
 </div>
 
 @foreach($photos->chunk($count) as $chunk)
-        <!-- BEGIN CHUNK -->
+<!-- BEGIN CHUNK -->
 <div class="row" id="sortable">
     @foreach($chunk as $photo)
-
 <!-- BEGIN ITEM -->
 <div class="col-md-2 col-sm-2" id="itemContainer" style="margin-bottom: 20px;" data-id="{{$photo->id}}">
     <a href="#">
         <img class="img-responsive thumbnail ui-state-default" id="sortable-item" data-id="{{$photo->id}}" src="/{{ $photo->file_path }}" >
     </a>
     <input class="icheck" data-checkbox="icheckbox_square-red" type="checkbox" name="icheck" value="1" data-id="{{ $photo->id }}">
-
-    <a href="{{url('admin/slider/'.$photo->id.'/edit')}}" class="btn btn-icon-only tooltips" data-container="body" data-placement="top" data-html="true" data-original-title="Düzenle">
-        <i class="fa fa-edit"></i>
-    </a>
 </div>
 <!-- END ITEM -->
-
     @endforeach
 </div>
 <!-- END CHUNK -->
@@ -57,6 +52,7 @@ array(
 @endif
 <!-- END PHOTO -->
 @endsection
+
 @section('PAGE-LEVEL-PLUGINS-SCRIPTS')
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="/backend/assets/global/plugins/dropzone/dropzone.js"></script>

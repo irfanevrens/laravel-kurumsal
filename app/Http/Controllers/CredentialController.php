@@ -6,33 +6,38 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
-use App\Brand;
+use App\Credential;
 
-class BrandController extends Controller
+class CredentialController extends Controller
 {
 
     public function index()
     {
-        $data['photo_order'] = Brand::orderBy('order_id', 'ASC')->get();
-        $photos = Brand::orderBy('order_id','ASC')->get();
+        $data['photo_order'] = Credential::orderBy('order_id', 'ASC')->get();
+        $photos = Credential::orderBy('order_id','ASC')->get();
         $count = $photos->count();
         if($count == 0){
             $count = 1;
         }
 
-        return view('backend.brand.brand')
+        return view('backend.credential.credential')
             ->withPhotos($photos)
             ->withCount($count)
             ->withData($data);
     }
-    
+
+
     public function store(Request $request)
     {
         $file = $request->file('file');
         list($filename, $extension) = explode(".", $file->getClientOriginalName());
         $filename = strtolower(str_slug(uniqid().'-'.$filename).'.'.$extension);
-        $fileSave = $file->move('uploads/brand/',$filename);
-        Image::make('uploads/brand/'.$filename)->fit(320, 240)->save('uploads/brand/'.$filename, 100);
+        $fileSave = $file->move('uploads/credential/',$filename);
+        // prevent possible upsizing
+        Image::make('uploads/credential/'.$filename)->resize(null, 600, function ($constraint) {
+            $constraint->aspectRatio();$constraint->upsize();
+        })
+            ->save('uploads/credential/'.$filename, 100);
 
         if($fileSave){
             $slider  = new Credential;
@@ -40,7 +45,7 @@ class BrandController extends Controller
             $slider->file_name = $filename;
             $slider->file_size = $file->getClientSize();
             $slider->file_mime = $file->getClientMimeType();
-            $slider->file_path = 'uploads/brand/'.$filename;
+            $slider->file_path = 'uploads/credential/'.$filename;
             $slider->save();
         }
         return $slider;
@@ -49,7 +54,7 @@ class BrandController extends Controller
     public function update(Request $request, $id)
     {
         foreach( $request->get('data') as $key => $id){
-            $photo = Brand::find($id);
+            $photo = Credential::find($id);
             $photo->order_id = $key;
             $photo->save();
         }
@@ -59,7 +64,7 @@ class BrandController extends Controller
     public function destroy(Request $request)
     {
         foreach( $request->get('data') as $key => $id){
-            $photo = Brand::find($id);
+            $photo = Credential::find($id);
             $imageFullPath = public_path($photo->file_path);
             File::delete($imageFullPath);
 

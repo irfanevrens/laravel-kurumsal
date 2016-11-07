@@ -16,9 +16,9 @@
               @foreach($page->slider as $slider)
                 <div class="swiper-slide dark" style="background-image: url('{{ $slider->file_path }}');">
                     <div class="container clearfix">
-                        <div class="slider-caption slider-caption-center">
-                            <h2 data-caption-animate="fadeInUp">ITEM 1</h2>
-                            <p data-caption-animate="fadeInUp" data-caption-delay="200">Create just what you need for your Perfect Website. Choose from a wide range of Elements &amp; simply put them on our Canvas.</p>
+                        <div class="slider-caption slider-caption-top-right">
+                            <h2 data-caption-animate="fadeInUp">{!! $slider->file_title!!}</h2>
+                            <p data-caption-animate="fadeInUp" data-caption-delay="200">{!! $slider->description !!}</p>
                         </div>
                     </div>
                 </div>

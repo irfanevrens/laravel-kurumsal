@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSlidersTable extends Migration
+class CreateCredentialsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +12,13 @@ class CreateSlidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('sliders', function (Blueprint $table) {
+        Schema::create('credentials', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_id');
             $table->string('file_name');
             $table->string('file_size');
             $table->string('file_mime');
             $table->string('file_path');
-            $table->string('file_title');
-            $table->string('description');
-
-
-
         });
     }
 
@@ -34,6 +29,6 @@ class CreateSlidersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('sliders');
+        Schema::drop('credentials');
     }
 }

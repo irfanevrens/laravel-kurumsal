@@ -18,6 +18,7 @@ class Page
     public $gallery;
     public $url;
     public $team;
+    public $credential;
     
     public function setTitle($title){$this->title = $title;} 
     public function setDescription($description){$this->description = $description;}
@@ -36,4 +37,5 @@ class Page
     public function setGallery($gallery){$this->gallery = $gallery;}
     public function setUrl($url){$this->url = $url;}
     public function setTeam($team){$this->team = $team;}
+    public function setCredential($credential){$this->credential = $credential;}
 }

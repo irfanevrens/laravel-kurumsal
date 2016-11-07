@@ -28,14 +28,15 @@
         <div class="content-wrap">
 
             <div class="container clearfix">
-
                 @foreach($page->gallery as $gallery)
                 <!-- gallery item -->
                 <div class="col_full clearfix">
                     <h3>{{ $gallery->name }} @if ($gallery->photos->count() > 0) <code> {{ $gallery->photos->count() }} </code>  @endif </h3>
                     <div class="masonry-thumbs col-6" data-big="" data-lightbox="gallery">
                         @foreach($gallery->photos as $photo)
-                            <a href="/uploads/galeri/images/{{ $photo->file_name }}" data-lightbox="gallery-item"><img class="image_fade" src="/uploads/galeri/images/{{ $photo->file_name }}" alt="{{ $photo->file_name }}"></a>
+                            <a href="/uploads/galeri/images/{{ $photo->file_name }}" data-lightbox="gallery-item">
+                                <img class="image_fade" src="/uploads/galeri/images/{{ $photo->file_name }}" alt="{{ $photo->file_name }}">
+                            </a>
                         @endforeach
                     </div>
                 </div>

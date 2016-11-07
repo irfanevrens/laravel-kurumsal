@@ -3,20 +3,23 @@
 get('/', 'FrontendController@index');
 get('hakkimizda', 'FrontendController@about');
 get('ekibimiz', 'FrontendController@team');
+get('sertifikalar-belgeler', 'FrontendController@credential');
 get('referanslarimiz', 'FrontendController@references');
 get('galeri', 'FrontendController@gallery');
+get('kariyer', 'FrontendController@kariyer');
+post('kariyer', 'FrontendController@kariyerPost');
 get('iletisim', 'FrontendController@contact');
 post('iletisim', 'FrontendController@contactPost');
 get('haberler', 'BlogController@index');
 get('haberler/{slug}', 'BlogController@showPost');
 
-// AuthController
+// Registration routes...
 get('register', 'Auth\AuthController@getRegister');
 post('register', 'Auth\AuthController@postRegister');
-// Authentication
+// Authentication routes...
 get('login', 'Auth\AuthController@getLogin');
 post('login', 'Auth\AuthController@postLogin');
-get('admin/logout', 'Auth\AuthController@getLogout');
+get('logout', 'Auth\AuthController@getLogout');
 
 // Authenticated
 Route::group(['middleware' => 'auth','admin'], function () {
@@ -29,6 +32,7 @@ Route::group(['middleware' => 'auth','admin'], function () {
     Route::resource('admin/logo', 'LogoController');
     Route::resource('admin/slider', 'SliderController');
     Route::resource('admin/brand', 'BrandController');
+    Route::resource('admin/credential', 'CredentialController');
     Route::resource('admin/references','ReferenceController');
     Route::resource('admin/about','AboutController');
     Route::resource('admin/modal','ModalController');

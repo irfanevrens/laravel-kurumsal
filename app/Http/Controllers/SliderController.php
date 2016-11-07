@@ -59,18 +59,41 @@ class SliderController extends Controller
 
     public function edit($id)
     {
-        //
+        $data = Slider::find($id);
+        return view('backend.slider.edit')
+            ->withData($data);
     }
 
 
     public function update(Request $request, $id)
     {
-        foreach( $request->get('data') as $key => $id){
+        $hidden = $request->get('hidden');
+
+        if($hidden == 0){
             $photo = Slider::find($id);
-            $photo->order_id = $key;
+            $photo->file_title = $request->get('file_title');
+            $photo->description = $request->get('description');
             $photo->save();
+            if($photo->save()){
+                return redirect('admin/slider/'.$id.'/edit');
+
+            }
+
         }
-        return $request->get('data');
+
+        elseif($hidden == 1) {
+            foreach( $request->get('data') as $key => $id){
+                $photo = Slider::find($id);
+                $photo->order_id = $key;
+                $photo->save();
+
+                return $request->get('data');
+                return $hidden;
+
+        }
+
+
+        }
     }
 
 

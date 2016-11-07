@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Credential;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Logo;
@@ -65,7 +66,7 @@ class FrontendController extends Controller
         $page->setTeam(Team::orderBy('order_id','ASC')->get());
         return view('frontend.team', compact('page'));
     }
-    public function documents()
+    public function credential()
     {
         $id = 4;
         $page = new iPage;
@@ -78,7 +79,9 @@ class FrontendController extends Controller
         $page->setLogoName(Logo::find(1)->file_name);
         $page->setCopyright('Copyrights © 2015 All Rights Reserved by Umut Yerebakmaz');
         $page->setSocials(Social::orderBy('order_id','ASC')->get());
-        return view('frontend.documents', compact('page'));
+        $page->setGallery(Galeri::Where('status', '=', 1)->orderBy('id', 'asc')->paginate(5));
+        $page->setCredential(Credential::orderBy('order_id','ASC')->get());
+        return view('frontend.credential', compact('page'));
     }
     public function references()
     {
@@ -142,6 +145,38 @@ class FrontendController extends Controller
 
     }
     public function contactPost (Request $request)
+    {
+        $data = array(
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'telephone' => $request->get('telephone'),
+            'subject' => $request->get('subject'),
+            'mesaj' => $request->get('message')
+        );
+
+        Mail::send('emails.contactform', $data, function ($message) {
+            $message->from('your@domain.com', 'your domain');
+            $message->to('umutyerebakmaz@hotmail.com')->subject('subject');
+        });
+        return "Mesajınız başarıyla gönderildi";
+    }
+    public function kariyer()
+    {
+        $id = 10; // kariyer page
+        $page = new iPage;
+        $page->setTitle(Page::find($id)->title);
+        $page->setDescription(Page::find($id)->description);
+        $page->setKeywords(Page::find($id)->keywords);
+        $page->setAuthor(Page::find($id)->author);
+        $page->setLogo(Logo::find(1)->file_path);
+        $page->setLogoName(Logo::find(1)->file_name);
+        $page->setContact(Contact::find(1));
+        $page->setCopyright('Copyrights © 2015 All Rights Reserved by Umut Yerebakmaz');
+        $page->setSocials(Social::orderBy('order_id','ASC')->get());
+        return view('frontend.kariyer', compact('page'));
+
+    }
+    public function kariyerPost (Request $request)
     {
         $data = array(
             'name' => $request->get('name'),
